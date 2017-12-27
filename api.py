@@ -59,13 +59,14 @@ def index():
 def target(args_command):
     global process_casperjs
     global output_casperjs
+
     print 'Thread started'
     #Call nodejs shell script
-    cmd = "./node_modules/casperjs/bin/casperjs casperjs3.js arg1 "
-    process_casperjs = subprocess.Popen(cmd + str(args_command), stdout=subprocess.PIPE,\
-                        shell=True)
-
-    output_casperjs = process_casperjs.communicate()[0]
+    # cmd = "./node_modules/casperjs/bin/casperjs casperjs3.js arg1 "
+    # process_casperjs = subprocess.Popen(cmd + str(args_command), stdout=subprocess.PIPE,\
+    #                     shell=True)
+    #
+    # output_casperjs = process_casperjs.communicate()[0]
 
     print 'Thread finished'
     print output_casperjs

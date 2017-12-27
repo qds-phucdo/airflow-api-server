@@ -1,0 +1,22 @@
+{
+  "name": "amazon-associates",
+  "version": "1.0.0",
+  "description": "",
+  "main": "amazon-associates.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "echo \"Test\""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async-waterfall": "^0.1.5",
+    "aws-sdk": ">= 2.0.9",
+    "casperjs": "^1.1.4",
+    "moment": "^2.19.3",
+    "mongoose": "^4.13.7",
+    "node-uuid": ">= 1.4.1",
+    "phantomjs": "^2.1.7",
+    "s3-ls": "^2.0.1"
+  }
+}
