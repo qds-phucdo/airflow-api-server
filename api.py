@@ -69,7 +69,7 @@ def target(args_command):
 
     output_casperjs = process_casperjs.communicate()[0]
     print ('Thread finished')
-    print output_casperjs
+    print (output_casperjs)
 
 @app.route('/integrate_amazon_associates', methods=['POST'])
 def integrate_amazon_associates():
@@ -84,7 +84,7 @@ def integrate_amazon_associates():
 
     result = PG.set_connection_amazon_associates(payload)
     print ("=====result=====")
-    print result
+    print (result)
     print ("=====result=====")
     args_command = '--email='+request.form['email']+\
             ' --password="'+request.form['password']+'"'
@@ -95,14 +95,14 @@ def integrate_amazon_associates():
 
         thread.join(20)
         if thread.is_alive():
-            print 'Terminating process'
+            print ('Terminating process')
             process_casperjs.terminate()
             # thread.join()
         if process_casperjs.returncode is None:
             output_casperjs = 2
 
-        print "return code "+ str(process_casperjs.returncode)
-        print "output_casperjs "+str(output_casperjs)
+        print ("return code "+ str(process_casperjs.returncode))
+        print ("output_casperjs "+str(output_casperjs))
 
     return json.dumps({'output': str(output_casperjs)})
 
@@ -120,7 +120,7 @@ def getreport(email="andrew@gmail.com"):
                             shell=True)
         output = p.communicate()[0]
         output = output.strip()
-        print output
+        print (output)
         return json.dumps({'output':output})
     else:
         return None
@@ -132,7 +132,7 @@ def getcode(email="andrew@gmail.com"):
     }
     result = PG.get_connection_amazon_associates(params)
     print ("get code")
-    print result
+    print (result)
     print ("=---------=")
     sys.stdout.flush()
     if result is None or result['security_code'] is None:
@@ -149,7 +149,7 @@ def update_code():
         'security_code': request.form['security_code']
     }
     result = PG.update_security_code(params)
-    return "OK"
+    return ("OK")
 
 if __name__ == '__main__':
     app.run(debug=True)
