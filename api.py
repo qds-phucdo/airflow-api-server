@@ -120,7 +120,6 @@ def getreport(email="andrew@gmail.com"):
                             shell=True)
         output = p.communicate()[0]
         output = output.strip()
-        print (output)
         return json.dumps({'output':output})
     else:
         return None

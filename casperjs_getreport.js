@@ -132,7 +132,15 @@ var password = casper.cli.options['password']
 var getcode_url = env.AIRFLOWAPI+'/getcode/'+email
 var amazon_url = 'https://affiliate-program.amazon.com/'
 var linklocal = 'http://localhost:8888'
-var data = []
+
+//Create cookie manager object. Cookies will be saved in file called liveCookies.txt
+var cookiesManager = require('./DCookieManagement').create("cookies.txt");
+// cookiesManager
+if(cookiesManager.cookieFileExists()){//Cookie file exists, try to read it
+    cookiesManager.readCookies();//Read cookies from cookie file
+    phantom.cookies = cookiesManager.phantomCookies;//Set phantom cookies
+}
+var data = [];
 casper.start(amazon_url);
 casper.thenClick('#a-autoid-0-announce', function () {
 });
@@ -172,6 +180,7 @@ casper.then(function() {
         });
         casper.then(function() {
             console.log(data);
+            cookiesManager.saveCookies();
         })
 
         casper.thenOpen('https://affiliate-program.amazon.com/logout', function() {});
@@ -179,6 +188,7 @@ casper.then(function() {
             this.exit();
         });
     } else {
+        cookiesManager.saveCookies();
         console.log(this.getPageContent())
     }
 });
