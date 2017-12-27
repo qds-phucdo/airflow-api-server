@@ -114,3 +114,4 @@ node_modules/*
 data-*
 *.png
 nohup.out
+cookies/*
