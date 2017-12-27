@@ -113,3 +113,4 @@ dags/data-*
 node_modules/*
 data-*
 *.png
+nohup.out
