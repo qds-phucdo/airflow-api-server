@@ -60,15 +60,15 @@ def target(args_command):
     global process_casperjs
     global output_casperjs
 
-    print 'Thread started'
-    #Call nodejs shell script
-    # cmd = "./node_modules/casperjs/bin/casperjs casperjs3.js arg1 "
-    # process_casperjs = subprocess.Popen(cmd + str(args_command), stdout=subprocess.PIPE,\
-    #                     shell=True)
-    #
-    # output_casperjs = process_casperjs.communicate()[0]
+    print ('Thread started')
 
-    print 'Thread finished'
+    #Call nodejs shell script
+    cmd = "./node_modules/casperjs/bin/casperjs casperjs3.js arg1 "
+    process_casperjs = subprocess.Popen(cmd + str(args_command), stdout=subprocess.PIPE,\
+                        shell=True)
+
+    output_casperjs = process_casperjs.communicate()[0]
+    print ('Thread finished')
     print output_casperjs
 
 @app.route('/integrate_amazon_associates', methods=['POST'])
@@ -83,9 +83,9 @@ def integrate_amazon_associates():
     }
 
     result = PG.set_connection_amazon_associates(payload)
-    print "=====result====="
+    print ("=====result=====")
     print result
-    print "=====result====="
+    print ("=====result=====")
     args_command = '--email='+request.form['email']+\
             ' --password="'+request.form['password']+'"'
 
@@ -131,9 +131,9 @@ def getcode(email="andrew@gmail.com"):
         'email' : email
     }
     result = PG.get_connection_amazon_associates(params)
-    print "get code"
+    print ("get code")
     print result
-    print "=---------="
+    print ("=---------=")
     sys.stdout.flush()
     if result is None or result['security_code'] is None:
         result = 'null'
