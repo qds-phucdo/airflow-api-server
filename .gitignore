@@ -112,3 +112,4 @@ dags/Amazonlogined.html
 dags/data-*
 node_modules/*
 data-*
+*.png
