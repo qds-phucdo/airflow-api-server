@@ -134,7 +134,7 @@ var amazon_url = 'https://affiliate-program.amazon.com/'
 var linklocal = 'http://localhost:8888'
 
 //Create cookie manager object. Cookies will be saved in file called liveCookies.txt
-var cookiesManager = require('./DCookieManagement').create("cookies.txt");
+var cookiesManager = require('./DCookieManagement').create("/tmp/"+email+"-cookies.txt");
 // cookiesManager
 if(cookiesManager.cookieFileExists()){//Cookie file exists, try to read it
     cookiesManager.readCookies();//Read cookies from cookie file
