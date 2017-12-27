@@ -8,12 +8,12 @@ var DCookieManagement = function(cookiesFileName){
     this.cookiesFileName=cookiesFileName;//set cookies file name
 
     DCookieManagement.prototype.loadCookies = function (cookies){
-        this.phantomCookies = cookies;
+        phantom.cookies = cookies;
     };
 
-    DCookieManagement.prototype.saveCookies = function(){
-        if(this.phantomCookies != null)
-            this.fileManagement.write(this.cookiesFileName, JSON.stringify(this.phantomCookies), "w");
+    DCookieManagement.prototype.saveCookies = function(cookies){
+        console.log(JSON.stringify(cookies));
+        this.fileManagement.write(this.cookiesFileName, JSON.stringify(cookies), "w");
     };
     DCookieManagement.prototype.readCookies = function () {
         if(this.cookieFileExists())
@@ -23,7 +23,7 @@ var DCookieManagement = function(cookiesFileName){
         return this.fileManagement.isFile(this.cookiesFileName);
     };
     DCookieManagement.prototype.getCookies = function(){
-        return this.phantomCookies;
+        return phantom.cookies;
     };
 
     DCookieManagement.prototype.removePreviousCookies = function(){

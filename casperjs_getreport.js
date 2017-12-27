@@ -169,6 +169,7 @@ casper.then(function() {
     casper.capture('1.png');
     var titlePage = casper.getTitle();
     if(titlePage == 'Amazon.com Associates Central - Home') {
+        cookiesManager.saveCookies(phantom.cookies);
         casper.thenOpen(ordersEndPoint, function() {
             data.push(JSON.stringify(this.getPageContent()));
         });
@@ -180,7 +181,6 @@ casper.then(function() {
         });
         casper.then(function() {
             console.log(data);
-            cookiesManager.saveCookies();
         })
 
         casper.thenOpen('https://affiliate-program.amazon.com/logout', function() {});

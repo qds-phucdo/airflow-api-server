@@ -132,6 +132,14 @@ var password = casper.cli.options['password']
 var getcode_url = env.AIRFLOWAPI+'/getcode/'+email
 var amazon_url = 'https://affiliate-program.amazon.com/'
 var linklocal = 'http://localhost:8888'
+var cookiesFile = './cookies/'+email+'-cookies.txt';
+var cookiesManager = require('./DCookieManagement').create(cookiesFile);
+// cookiesManager
+if(cookiesManager.cookieFileExists()){//Cookie file exists, try to read it
+    cookiesManager.readCookies();//Read cookies from cookie file
+    phantom.cookies = cookiesManager.phantomCookies;//Set phantom cookies
+}
+
 casper.start(amazon_url);
 casper.thenClick('#a-autoid-0-announce', function () {
 });
@@ -160,6 +168,7 @@ casper.then(function() {
     // titlePage = 'AAA'
     if(titlePage == 'Amazon.com Associates Central - Home') {
         console.log(1);
+        cookiesManager.saveCookies(phantom.cookies);
         casper.thenOpen('https://affiliate-program.amazon.com/logout', function() {
             casper.capture('clogout.png');
         });
@@ -167,7 +176,6 @@ casper.then(function() {
             this.exit();
         });
     } else {
-
         var captcha = casper.getPageContent().match(/Important Message!/g);
         // captcha = null
         if(captcha != null) {
@@ -177,7 +185,7 @@ casper.then(function() {
             casper.capture('sendcode1.png');
             this.waitForSelector('#continue');
             casper.thenClick('#continue', function () {});
-            casper.capture('sendcode2.png');
+            casper.capture('2.png');
             console.log(2);
             info = 'null';
             casper.then(function() {
