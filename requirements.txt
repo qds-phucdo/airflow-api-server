@@ -67,7 +67,7 @@ thrift==0.9.3
 Unidecode==0.4.21
 urllib3==1.22
 vine==1.1.4
-Werkzeug==0.12.2
+Werkzeug==0.15.3
 WTForms==2.1
 xmltodict
 zope.deprecation==4.3.0
