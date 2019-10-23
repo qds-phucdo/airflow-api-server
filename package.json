@@ -14,7 +14,7 @@
     "aws-sdk": ">= 2.0.9",
     "casperjs": "^1.1.4",
     "moment": "^2.19.3",
-    "mongoose": "^4.13.7",
+    "mongoose": "^5.7.6",
     "node-uuid": ">= 1.4.1",
     "phantomjs": "^2.1.7",
     "s3-ls": "^2.0.1"
